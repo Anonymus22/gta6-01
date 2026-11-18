@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>PALM HEAT — a Marisol story</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #10151c; height: 100%; overflow: hidden;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #fff; }
+  #wrap { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+  canvas { width: min(100vw, 177.78vh); height: auto; aspect-ratio: 16 / 9; background: #d8c491;
+    box-shadow: 0 0 60px rgba(0,0,0,.6); cursor: crosshair; }
+  .screen { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(8, 10, 14, 0.62); z-index: 5; }
+  .card { max-width: 620px; width: calc(100% - 48px); background: rgba(14, 18, 24, 0.92);
+    border: 1px solid rgba(255, 211, 77, 0.5); border-radius: 14px; padding: 28px 32px;
+    text-align: center; box-shadow: 0 18px 60px rgba(0,0,0,.55); }
+  h1 { margin: 0 0 2px; font-size: 52px; letter-spacing: 3px; color: #ffd34d;
+    text-shadow: 0 3px 0 #b8542e, 0 6px 22px rgba(0,0,0,.5); }
+  .sub { color: #ffb3a0; letter-spacing: 4px; font-size: 13px; margin-bottom: 14px; }
+  .premise { color: #e8e4da; font-size: 15px; line-height: 1.5; margin: 10px 0 16px; }
+  .controls { text-align: left; margin: 0 auto 18px; max-width: 470px; color: #cfd6dd;
+    font-size: 13.5px; line-height: 1.75; columns: 2; column-gap: 28px; }
+  .controls b { color: #ffd34d; font-weight: 700; }
+  button { display: block; width: 260px; margin: 8px auto; padding: 12px 0; font-size: 16px;
+    font-weight: 700; letter-spacing: 1px; color: #1c1408; background: #ffd34d; border: 0;
+    border-radius: 8px; cursor: pointer; }
+  button:hover { background: #ffdf7e; }
+  button.ghost { background: transparent; color: #ffd34d; border: 1px solid #ffd34d; }
+  button.ghost:hover { background: rgba(255,211,77,.12); }
+  #endTitle { font-size: 46px; letter-spacing: 5px; margin: 0 0 8px; }
+  .busted #endTitle { color: #5aa2ff; }
+  .wasted #endTitle { color: #ff5147; }
+  #endText { color: #e8e4da; margin-bottom: 18px; }
+  .tiny { color: #8d97a3; font-size: 12px; margin-top: 14px; }
+</style>
+</head>
+<body>
+<div id="wrap"><canvas id="game" width="1280" height="720"></canvas></div>
+
+<div class="screen" id="menu">
+  <div class="card">
+    <h1>PALM HEAT</h1>
+    <div class="sub">A MARISOL STORY</div>
+    <p class="premise">Rico Vega is home. His aunt Rosa's diner is drowning in Corallo
+      "protection" debt, the Old Port answers to Vince Corallo now, and every cop in
+      Marisol knows Rico's face. Drive, hustle, and take the city back — one job at a time.</p>
+    <div class="controls">
+      <div><b>W A S D</b> — move / drive</div>
+      <div><b>Shift</b> — sprint</div>
+      <div><b>E</b> — enter car · talk · use</div>
+      <div><b>Mouse</b> — aim</div>
+      <div><b>Click / F</b> — punch · shoot</div>
+      <div><b>Space</b> — handbrake</div>
+      <div><b>Q / 1 / 2</b> — swap weapon</div>
+      <div><b>P / Esc</b> — pause · <b>M</b> — mute</div>
+    </div>
+    <button id="newBtn">NEW GAME</button>
+    <button id="continueBtn" class="ghost">CONTINUE</button>
+    <div class="tiny">An original game. Marisol, its people and its stories are fictional.</div>
+  </div>
+</div>
+
+<div class="screen" id="pause" style="display:none">
+  <div class="card">
+    <h1 style="font-size:34px">PAUSED</h1>
+    <p class="premise">The heat waits for no one. Well — just this once.</p>
+    <button id="resumeBtn">RESUME</button>
+    <button id="saveBtn" class="ghost">SAVE GAME</button>
+    <button id="soundBtn" class="ghost">Sound: ON</button>
+    <button id="quitBtn" class="ghost">QUIT TO TITLE</button>
+  </div>
+</div>
+
+<div class="screen" id="endScreen" style="display:none">
+  <div class="card">
+    <h2 id="endTitle">BUSTED</h2>
+    <p id="endText"></p>
+    <button id="endBtn">Continue</button>
+  </div>
+</div>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
